@@ -10,7 +10,10 @@ def home(request):
 
 @login_required
 def bmi_view(request):
-    profile, created = Profile.objects.get_or_create(user=request.user)
+    # SAFE profile handling (no crash)
+    profile = Profile.objects.filter(user=request.user).first()
+    if not profile:
+        profile = Profile.objects.create(user=request.user)
 
     if request.method == 'POST':
         try:
@@ -29,14 +32,14 @@ def bmi_view(request):
             else:
                 category = "Obese"
 
-            context = {
+            return render(request, 'accounts/bmi_result.html', {
                 'bmi': round(bmi, 2),
                 'category': category
-            }
-
-            return render(request, 'accounts/bmi_result.html', context)
+            })
 
         except:
-            return render(request, 'accounts/bmi_form.html', {'error': 'Invalid input'})
+            return render(request, 'accounts/bmi_form.html', {
+                'error': 'Invalid input'
+            })
 
     return render(request, 'accounts/bmi_form.html')
