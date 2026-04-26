@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BMI Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+        }
+
+        .container {
+            width: 500px;
+            margin: 80px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            margin: 8px 0;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            text-align: center;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>BMI RESULT</h2>
+
+    <p><strong>Age:</strong> {{ age }}</p>
+    <p><strong>BMI:</strong> {{ bmi }}</p>
+
+    <p>
+        <strong>WHO BMI Classification:</strong>
+        {{ who_class }}
+    </p>
+
+    <p>
+        <strong>PNP BMI Classification:</strong>
+        {{ pnp_class }}
+    </p>
+
+    <p><strong>Weight to Lose:</strong> {{ weight_to_lose }}</p>
+    <p><strong>Maximum Normal Weight:</strong> {{ max_weight }}</p>
+
+    <a href="{% url 'bmi' %}" class="btn">Compute Again</a>
+</div>
+
+</body>
+</html>

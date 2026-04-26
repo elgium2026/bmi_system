@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <script>
+        function applyUppercaseRule() {
+            const personnelType = document.getElementById("personnel_type").value;
+
+            const firstName = document.getElementById("first_name");
+            const middleName = document.getElementById("middle_name");
+            const lastName = document.getElementById("last_name");
+
+            if (personnelType === "PCO") {
+                firstName.value = firstName.value.toUpperCase();
+                middleName.value = middleName.value.toUpperCase();
+                lastName.value = lastName.value.toUpperCase();
+
+                firstName.style.textTransform = "uppercase";
+                middleName.style.textTransform = "uppercase";
+                lastName.style.textTransform = "uppercase";
+            } else {
+                firstName.style.textTransform = "none";
+                middleName.style.textTransform = "none";
+                lastName.style.textTransform = "none";
+            }
+        }
+
+        function forceUppercaseWhileTyping() {
+            const personnelType = document.getElementById("personnel_type").value;
+
+            if (personnelType === "PCO") {
+                document.getElementById("first_name").value =
+                    document.getElementById("first_name").value.toUpperCase();
+
+                document.getElementById("middle_name").value =
+                    document.getElementById("middle_name").value.toUpperCase();
+
+                document.getElementById("last_name").value =
+                    document.getElementById("last_name").value.toUpperCase();
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-light d-flex justify-content-center align-items-center" style="min-height:100vh;">
+
+<div class="card shadow p-4" style="max-width: 500px; width:100%;">
+
+    <h3 class="text-center mb-4">Signup</h3>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label>Personnel Type</label>
+            <select id="personnel_type" name="personnel_type" class="form-control"
+                    onchange="applyUppercaseRule()">
+                <option value="PCO">PCO</option>
+                <option value="PNCO">PNCO</option>
+                <option value="NUP">NUP</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label>Unit</label>
+            <input type="text" name="unit" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Rank</label>
+            <input type="text" name="rank" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>First Name</label>
+            <input type="text" id="first_name" name="first_name" class="form-control"
+                   oninput="forceUppercaseWhileTyping()" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Middle Name</label>
+            <input type="text" id="middle_name" name="middle_name" class="form-control"
+                   oninput="forceUppercaseWhileTyping()">
+        </div>
+
+        <div class="mb-3">
+            <label>Last Name</label>
+            <input type="text" id="last_name" name="last_name" class="form-control"
+                   oninput="forceUppercaseWhileTyping()" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Birthdate</label>
+            <input type="date" name="birthdate" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Sex</label>
+            <select name="sex" class="form-control">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label>Username</label>
+            <input type="text" name="username" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Password</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Confirm Password</label>
+            <input type="password" name="confirm_password" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Signup</button>
+    </form>
+
+    <div class="text-center mt-3">
+        <a href="{% url 'login' %}">Back to Login</a>
+    </div>
+
+</div>
+
+</body>
+</html>

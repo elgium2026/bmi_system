@@ -1,0 +1,1 @@
+web: cd bmi_system && gunicorn bmi_system.wsgi:application

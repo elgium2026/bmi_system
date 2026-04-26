@@ -1,0 +1,22 @@
+<h3 class="text-center">BMI History</h3>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>BMI</th>
+            <th>WHO</th>
+            <th>PNP</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for r in records %}
+        <tr>
+            <td>{{ r.date_computed }}</td>
+            <td>{{ r.bmi }}</td>
+            <td>{{ r.who_class }}</td>
+            <td>{{ r.pnp_class }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
