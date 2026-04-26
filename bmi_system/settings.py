@@ -3,7 +3,6 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-dev-key')
 
 DEBUG = True
@@ -11,7 +10,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
-# APPLICATIONS
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -24,7 +22,6 @@ INSTALLED_APPS = [
 ]
 
 
-# MIDDLEWARE
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -41,7 +38,6 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'bmi_system.urls'
 
 
-# TEMPLATES
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -62,7 +58,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'bmi_system.wsgi.application'
 
 
-# DATABASE (SQLite for Render – NO PostgreSQL)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -71,7 +66,6 @@ DATABASES = {
 }
 
 
-# PASSWORD VALIDATION
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -80,30 +74,21 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# INTERNATIONALIZATION
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Asia/Manila'
 USE_I18N = True
 USE_TZ = True
 
 
-# STATIC FILES (FIXED)
 STATIC_URL = '/static/'
-
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
-
+STATICFILES_DIRS = [BASE_DIR / 'static']
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-# DEFAULT PRIMARY KEY
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# LOGIN SETTINGS (optional but safe)
-LOGIN_URL = '/accounts/login/'
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/accounts/login/'
+LOGOUT_REDIRECT_URL = '/login/'
